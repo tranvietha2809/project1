@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Pset 1</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="Academica Learning Page Template">
+	<meta name="keywords" content="academica, unica, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Favicon -->
+	<link href="img/favicon.ico" rel="shortcut icon"/>
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800" rel="stylesheet">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}"/>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}"/>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/flaticon.css') }}"/>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.css') }}"/>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+
+
+	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+<body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<!-- Header section -->
+	<header class="header-section">
+		<div class="header-warp">
+			<div class="container">
+				<a href="#" class="site-logo">
+					<img src="{{ url_for('static', filename='img/logo.png') }}" alt="">
+				</a>
+				<div class="user-panel">
+					<a href="{{url_for('register') }}">Register</a>
+				</div>
+				<div class="nav-switch">
+					<i class="fa fa-bars"></i>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- Header section end -->
+
+
+	<!-- Hero section -->
+	<section class="hero-section set-bg" data-setbg="{{ url_for('static', filename='img/bg.jpg') }}">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-7">
+					<div class="hero-text text-white">
+					<h2>CS50 Web development Pset1</h2>
+					<p>Technologies used: PostgreSQL, Flask, HTML, CSS, JS</p>
+					</div>
+				</div>
+				<div class = "col-lg-3">
+					<div class="hero-text text-white">
+						<br></br>
+						<h3>Log in to your account</h3>
+					<form action="{{ url_for('login') }}" id="login_form" method="post" onsubmit="login_validate()">
+						<fieldset>
+							<p id = "message_login" class = "text-red"></p>
+				        <div class="form-group">
+				            <input autocomplete="off" autofocus class="form-control" id="username" name="username" placeholder="Username" type="text"/>
+				        </div>
+				        <div class="form-group">
+				            <input class="form-control" id="password" name="password" placeholder="Password" type="password"/>
+				        </div>
+				        <div class="form-group">
+				            <button class="btn btn-default" type="submit" >Log In</button>
+				        </div>
+							</div>
+				    </fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+	</section>
+	<!-- Hero section end -->
+
+
+	<!--====== Javascripts & Jquery ======-->
+	<script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/circle-progress.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+	<script>
+
+	</script>
+
+
+</body>
+</html>

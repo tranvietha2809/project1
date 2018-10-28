@@ -1,0 +1,40 @@
+{%extends "layout.html" %}
+
+{% block title %}
+  Main
+{% endblock %}
+
+{%block main%}
+<!-- Page top -->
+  <section class = "page-top-section set-bg" data-setbg = "{{ url_for('static', filename='img/page-top-bg.jpg') }}">
+    <div class ="container text-white">
+      <h3> Welcome, {{user_id}}</h3>
+    </div>
+  </section>
+<!-- Page top end -->
+
+<!-- Search section -->
+<section class="multi-search-section">
+		<div class="msf-warp">
+			<div class="container">
+				<h5>Search for a book</h5>
+				<form class="multi-search-form" action = "{{ url_for('search')}}" method="post" >
+          <div class = "form-group">
+					       <input type="text" name="book_title" placeholder="Book title">
+          </div>
+          <div class = "form-group">
+					       <input type="text" name="isbn" placeholder="ISBN">
+          </div>
+          <div class = "form-group">
+					       <input type="text" name="author" placeholder="Author name">
+          </div>
+					<button class="site-btn" type="submit">Search <i class="fa fa-angle-right"></i></button>
+				</form>
+			</div>
+		</div>
+	</section>
+<!-- Search section end -->
+
+<!-- Results section -->
+
+{% endblock %}
