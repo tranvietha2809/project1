@@ -48,7 +48,7 @@
       {% else %}
       <p> You don't have any review for this book </p>
       <p> Write one now </p>
-        <form action ="{{url_for('submit_review')}}", method = "post">
+        <form action ="{{url_for('book', isbn = book_info.isbn)}}", method = "post">
           <div class = "form-group">
             <textarea id = "my_review" style = "height:200px" placeholder="Write your review..."></textarea>
           </div>

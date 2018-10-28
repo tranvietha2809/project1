@@ -110,25 +110,37 @@ def register():
     elif request.method == "GET":
         return render_template("register.html")
 
-@app.route("/book/<isbn>")
+@app.route("/book/<isbn>", methods = ["POST", "GET"])
 def book(isbn):
-    book_info = db.execute("""SELECT isbn, title, author, year FROM book
-                                WHERE isbn= :isbn""", {"isbn":str(isbn)}).fetchone()
-    user_info = db.execute("""SELECT review, user_id_review FROM review
-                    WHERE user_id_review= :user_id_review AND isbn_review=:isbn""",
-                    {"user_id_review":session["user_id"], "isbn":str(isbn)}).fetchone()
-    if not user_info:
-        review = None;
-    else:
-        review = user_info.review
+    if request.method == "GET":
+        book_info = db.execute("""SELECT isbn, title, author, year FROM book
+                                    WHERE isbn= :isbn""", {"isbn":str(isbn)}).fetchone()
+        user_info = db.execute("""SELECT review, user_id_review FROM review
+                        WHERE user_id_review= :user_id_review AND isbn_review=:isbn""",
+                        {"user_id_review":session["user_id"], "isbn":str(isbn)}).fetchone()
+        if not user_info:
+            review = None
+        else:
+            review = user_info.review
+        db.commit()
+        session["isbn"] = isbn
+        return render_template("book.html", book_info = book_info, review = review)
+    elif request.method == "POST":
+        review_input = request.form.get("my_review")
+        return submit_review(isbn, review_input)
+
+
+#@app.route("/book/submit_review/<isbn>")
+def submit_review(isbn, review_input):
+    db.execute("""INSERT INTO "review" (user_id_review, isbn_review, review) VALUES
+                (:user_id_review, :isbn_review, :review)""",
+                {
+                    "user_id_review":session["user_id"],
+                    "isbn_review": str(isbn),
+                    "review" : review_input,
+                })
     db.commit()
-    return render_template("book.html", book_info = book_info, review = review)
-
-
-@app.route("/submit_review")
-def submit_review():
-    review_input = request.form.get("my_review")
-    return redirect(url_for("book"))
+    return redirect(url_for("book", isbn = isbn))
 
 @app.route("/sign_out")
 def logout():
