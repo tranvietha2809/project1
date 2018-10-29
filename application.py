@@ -126,7 +126,7 @@ def book(isbn):
         session["isbn"] = isbn
         return render_template("book.html", book_info = book_info, review = review)
     elif request.method == "POST":
-        review_input = request.form.get("my_review")
+        review_input = request.form.get("review")
         return submit_review(isbn, review_input)
 
 
