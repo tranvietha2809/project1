@@ -1,3 +1,3 @@
-# Project 1
+# Academica
 
-Web Programming with Python and JavaScript
+Web app based on CS50's pset 1
